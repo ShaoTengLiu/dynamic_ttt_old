@@ -41,7 +41,7 @@ my_makedir(args.outf)
 import torch.backends.cudnn as cudnn
 cudnn.benchmark = True
 net, ext, head, ssh = build_model(args)
-teset, teloader = prepare_test_data(args)
+teset, teloader = prepare_test_data(args) # 还是一样，总的来说解决 dataloader就可以实现数据集的转换
 
 print('Resuming from %s...' %(args.resume))
 ckpt = torch.load(args.resume + '/ckpt.pth')

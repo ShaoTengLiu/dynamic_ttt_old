@@ -20,7 +20,7 @@ def analyze_all(adapted, all_initial):
 def show_result(adapted, initial):
 	print('Error (%)')
 	print_color('RED', 		'%.1f' %(initial*100))
-	print_color('YELLOW', 	'%.1f' %(adapted*100))
+	print_color('YELLOW', 	'%.1f' %(adapted*100)) # 适应后的错误率
 	print_color('GREEN',	'%.1f' %((initial - adapted)*100))
 
 def get_err_adapted(new_correct, old_correct, ssh_confide, threshold=1):

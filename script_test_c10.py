@@ -8,14 +8,16 @@ setting = sys.argv[3]
 name = sys.argv[4]
 
 dataroot = '--dataroot '
-dataroot += '/home/yu/datasets/'		# PLEASE EDIT THIS
+# dataroot += '/home/yu/datasets/'		# PLEASE EDIT THIS
+dataroot += '~/data/yusun/cifar'
 
 if level == 0:
 	common_corruptions = ['cifar_new']
 else:
-	common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
-	                    'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
-	                    'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+	# common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
+	#                     'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
+	#                     'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+	common_corruptions = ['scale4_02']
 	if level == 5:
 		common_corruptions.append('original')
 
@@ -53,12 +55,13 @@ elif setting == 'online':
 
 batch_size_main = 128
 batch_size_test = 32
+# batch_size_test = 1
 
 for corruption in common_corruptions:
 	print(corruption, level)
-	call(' '.join(['python', 'test_calls/test_initial.py',
+	call(' '.join(['python', 'test_calls/test_initial.py', # test_initial.py 在这个里面才是核心 （join用空格间隔）
 						dataroot,
-						gpnorm_tag,
+						gpnorm_tag, # 这条会改变网络结构，从而报错
 						none_tag,
 						'--grad_corr',
 						'--level 		%d' %(level),
@@ -66,7 +69,8 @@ for corruption in common_corruptions:
 						'--shared 		%s' %(shared),
 						'--batch_size	%d'	%(batch_size_main),
 						'--resume 		results/cifar10_%s_%s/' %(shared, name),
-						'--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
+						# '--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
+						'--outf 		results/C10C_%s_%s_%s%s' %(shared, setting, name, fix_str)]),
 						shell=True)
 
 	if shared == 'none':
@@ -75,7 +79,8 @@ for corruption in common_corruptions:
 	call(' '.join(['python', 'test_calls/show_decomp.py',
 						'--level 		%d' %(level),
 						'--corruption	%s' %(corruption),
-						'--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
+						# '--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
+						'--outf 		results/C10C_%s_%s_%s%s' %(shared, setting, name, fix_str)]),
 						shell=True)
 
 	call(' '.join(['python', 'test_calls/test_adapt.py',

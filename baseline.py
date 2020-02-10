@@ -18,7 +18,8 @@ from advertorch.attacks import LinfPGDAttack
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default='cifar10')
-parser.add_argument('--dataroot', default='/home/yu/datasets/')
+# parser.add_argument('--dataroot', default='/home/yu/datasets/')
+parser.add_argument('--dataroot', default='~/data/yusun/cifar')
 ########################################################################
 parser.add_argument('--depth', default=26, type=int)
 parser.add_argument('--width', default=1, type=int)

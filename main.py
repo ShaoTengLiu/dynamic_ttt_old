@@ -12,7 +12,8 @@ from utils.rotation import rotate_batch
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default='cifar10')
-parser.add_argument('--dataroot', default='/home/yu/datasets/')
+# parser.add_argument('--dataroot', default='/home/yu/datasets/')
+parser.add_argument('--dataroot', default='~/data/yusun/cifar')
 parser.add_argument('--shared', default=None)
 ########################################################################
 parser.add_argument('--depth', default=26, type=int)

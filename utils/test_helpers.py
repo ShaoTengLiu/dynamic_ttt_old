@@ -45,22 +45,22 @@ def build_model(args):
 
 def test(dataloader, model, sslabel=None):
 	criterion = nn.CrossEntropyLoss(reduction='none').cuda()
-	model.eval()
+	model.eval() # 让 model变成测试模式
 	correct = []
 	losses = []
 	for batch_idx, (inputs, labels) in enumerate(dataloader):
 		if sslabel is not None:
-			inputs, labels = rotate_batch(inputs, sslabel)
+			inputs, labels = rotate_batch(inputs, sslabel) # 在这里rotate
 		inputs, labels = inputs.cuda(), labels.cuda()
 		with torch.no_grad():
-			outputs = model(inputs)
-			loss = criterion(outputs, labels)
+			outputs = model(inputs) # 就看这个能不能送进去
+			loss = criterion(outputs, labels) # 就是识别任务，判断能否得出正确的label
 			losses.append(loss.cpu())
 			_, predicted = outputs.max(1)
-			correct.append(predicted.eq(labels).cpu())
-	correct = torch.cat(correct).numpy()
+			correct.append(predicted.eq(labels).cpu()) # 是否预测正确
+	correct = torch.cat(correct).numpy() # 这个回头要测试一下
 	losses = torch.cat(losses).numpy()
-	model.train()
+	model.train() # 变回训练模式
 	return 1-correct.mean(), correct, losses
 
 def test_grad_corr(dataloader, net, ssh, ext):

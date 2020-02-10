@@ -59,7 +59,8 @@ class ResNetCifar(nn.Module):
         self.layer3 = self._make_layer(norm_layer, 64 * width, stride=2)
         self.bn = norm_layer(64 * width)
         self.relu = nn.ReLU(inplace=True)
-        self.avgpool = nn.AvgPool2d(8)
+        # self.avgpool = nn.AvgPool2d(8)
+        self.avgpool = nn.AdaptiveAvgPool2d(1) # use it when you want to test pictures with different scale
         self.fc = nn.Linear(64 * width, classes)
 
         # Initialization

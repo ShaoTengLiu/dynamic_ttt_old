@@ -21,6 +21,7 @@ info.append(('gn', '_expand_final', 2))
 info.append(('gn', '_expand_final', 1))
 info.append(('bn', '_expand_final', 5))
 
+baseline = [] #自己添加的
 for level in [1,2,3,4,5]:
 	baseline += [('', '', level)]
 	baseline += [('gn', '1_alp', level)]

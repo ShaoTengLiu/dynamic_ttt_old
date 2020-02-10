@@ -64,7 +64,7 @@ if __name__ == '__main__':
 	parser.add_argument('--corruption', default='original')
 	parser.add_argument('--outf', default='.')
 	args = parser.parse_args()
-	rdict = torch.load(args.outf + '/%s_%d_inl.pth' %(args.corruption, args.level))
+	rdict = torch.load(args.outf + '/%s_%d_inl.pth' %(args.corruption, args.level)) 
 	fname = args.outf + '/%s_%d' %(args.corruption, args.level)
 
 	plot_losses(rdict['cls_losses'], rdict['ssh_losses'], fname, use_agg=True)
