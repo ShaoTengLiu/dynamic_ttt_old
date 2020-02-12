@@ -6,10 +6,10 @@ import seaborn as sns
 sns.set_palette('colorblind')
 
 corruptions_names = ['original', 'gauss', 'shot', 'impulse', 'defocus', 'glass', 'motion', 'zoom', 
-						'snow', 'frost', 'fog', 'bright', 'contrast', 'elastic', 'pixelate', 'jpeg']
+						'snow', 'frost', 'fog', 'bright', 'contrast', 'elastic', 'pixelate', 'jpeg', 'scale2']
 
 corruptions_names_short = ['orig', 'gauss', 'shot', 'impul', 'defoc', 'glass', 'motn', 'zoom', 
-						'snow', 'frost', 'fog', 'brit', 'contr', 'elast', 'pixel', 'jpeg']
+						'snow', 'frost', 'fog', 'brit', 'contr', 'elast', 'pixel', 'jpeg', 's']
 info = []
 info.append(('gn', '_expand_final', 5))
 info.append(('gn', '_expand_final', 4))

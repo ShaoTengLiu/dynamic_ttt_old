@@ -6,6 +6,8 @@ level = int(sys.argv[1])
 shared = sys.argv[2]
 setting = sys.argv[3]
 name = sys.argv[4]
+scale_level = sys.argv[5]
+scale = 0
 
 dataroot = '--dataroot '
 # dataroot += '/home/yu/datasets/'		# PLEASE EDIT THIS
@@ -14,12 +16,15 @@ dataroot += '~/data/yusun/cifar'
 if level == 0:
 	common_corruptions = ['cifar_new']
 else:
-	# common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
-	#                     'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
-	#                     'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
-	common_corruptions = ['scale4_02']
-	if level == 5:
-		common_corruptions.append('original')
+	if scale_level != '0':
+		scale = 1
+		common_corruptions = ['scale' + scale_level]
+	else:
+		common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
+							'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
+							'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+		if level == 5:
+			common_corruptions.append('original')
 
 fix_bn = len(sys.argv) > 5 and sys.argv[5] == 'fix_bn'
 fix_str = '_fix_bn' if fix_bn else ''
