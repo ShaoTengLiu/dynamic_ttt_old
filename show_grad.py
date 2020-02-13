@@ -14,8 +14,10 @@ common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_
                     'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
 
 folders = []
-folders.append('results/C10C_layer2_slow_gn_expand_final')
-folders.append('results/C10C_layer2_online_gn_expand_final')
+# folders.append('results/C10C_layer2_slow_gn_expand_final')
+# folders.append('results/C10C_layer2_online_gn_expand_final')
+folders.append('results/C10C_layer2_slow_gn_expand')
+folders.append('results/C10C_layer2_online_gn_expand')
 
 for folder in folders:
 	plt.figure(figsize=(4, 3))

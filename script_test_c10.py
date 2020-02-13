@@ -7,24 +7,22 @@ shared = sys.argv[2]
 setting = sys.argv[3]
 name = sys.argv[4]
 scale_level = sys.argv[5]
-scale = 0
 
 dataroot = '--dataroot '
 # dataroot += '/home/yu/datasets/'		# PLEASE EDIT THIS
 dataroot += '~/data/yusun/cifar'
 
-if level == 0:
-	common_corruptions = ['cifar_new']
+if scale_level != '-1':
+    common_corruptions = ['scale_16_' + scale_level]
 else:
-	if scale_level != '0':
-		scale = 1
-		common_corruptions = ['scale' + scale_level]
-	else:
-		common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
+    if level == 0:
+        common_corruptions = ['cifar_new']
+    else:
+        common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
 							'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
 							'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
-		if level == 5:
-			common_corruptions.append('original')
+        if level == 5:
+            common_corruptions.append('original')
 
 fix_bn = len(sys.argv) > 5 and sys.argv[5] == 'fix_bn'
 fix_str = '_fix_bn' if fix_bn else ''
@@ -60,7 +58,6 @@ elif setting == 'online':
 
 batch_size_main = 128
 batch_size_test = 32
-# batch_size_test = 1
 
 for corruption in common_corruptions:
 	print(corruption, level)
@@ -74,8 +71,7 @@ for corruption in common_corruptions:
 						'--shared 		%s' %(shared),
 						'--batch_size	%d'	%(batch_size_main),
 						'--resume 		results/cifar10_%s_%s/' %(shared, name),
-						# '--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
-						'--outf 		results/C10C_%s_%s_%s%s' %(shared, setting, name, fix_str)]),
+						'--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
 						shell=True)
 
 	if shared == 'none':
@@ -84,7 +80,6 @@ for corruption in common_corruptions:
 	call(' '.join(['python', 'test_calls/show_decomp.py',
 						'--level 		%d' %(level),
 						'--corruption	%s' %(corruption),
-						# '--outf 		results/C10C_%s_%s_%s%s/' %(shared, setting, name, fix_str)]),
 						'--outf 		results/C10C_%s_%s_%s%s' %(shared, setting, name, fix_str)]),
 						shell=True)
 

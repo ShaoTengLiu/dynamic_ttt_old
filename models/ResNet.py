@@ -79,7 +79,7 @@ class ResNetCifar(nn.Module):
             layers.append(BasicBlock(self.inplanes, planes, norm_layer))
         return nn.Sequential(*layers)
 
-    def forward(self, x):
+    def forward(self, x): # pre activation
         x = self.conv1(x)
         x = self.layer1(x)
         x = self.layer2(x)

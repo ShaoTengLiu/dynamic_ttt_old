@@ -30,15 +30,15 @@ parser.add_argument('--rotation_type', default='rand')
 parser.add_argument('--outf', default='.')
 
 args = parser.parse_args()
-import os
-if os.path.isdir('/data/yusun/datasets/'):
-    args.dataroot = '/data/yusun/datasets/'
-elif os.path.isdir('/home/smartbuy/ssda/datasets/'):
-    args.dataroot = '/home/smartbuy/ssda/datasets/'
-elif os.path.isdir('/home/yu/datasets/'):
-    args.dataroot = '/home/yu/datasets/'
-elif os.path.isdir('/home/yusun/datasets/'):
-    args.dataroot = '/home/yusun/datasets/'
+# import os
+# if os.path.isdir('/data/yusun/datasets/'):
+#     args.dataroot = '/data/yusun/datasets/'
+# elif os.path.isdir('/home/smartbuy/ssda/datasets/'):
+#     args.dataroot = '/home/smartbuy/ssda/datasets/'
+# elif os.path.isdir('/home/yu/datasets/'):
+#     args.dataroot = '/home/yu/datasets/'
+# elif os.path.isdir('/home/yusun/datasets/'):
+#     args.dataroot = '/home/yusun/datasets/'
 
 my_makedir(args.outf)
 import torch.backends.cudnn as cudnn
@@ -68,7 +68,7 @@ for epoch in range(1, args.nepoch+1):
         loss = criterion(outputs_cls, labels_cls)
 
         if args.shared is not None:
-            inputs_ssh, labels_ssh = rotate_batch(inputs, args.rotation_type)
+            inputs_ssh, labels_ssh = rotate_batch(inputs, args.rotation_type) # train randomly
             inputs_ssh, labels_ssh = inputs_ssh.cuda(), labels_ssh.cuda()
             outputs_ssh = ssh(inputs_ssh)
             loss_ssh = criterion(outputs_ssh, labels_ssh)

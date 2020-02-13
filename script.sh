@@ -5,28 +5,27 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 # 			--outf results/cifar10_layer2_gn_expand --group_norm 8
 
 
-# CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 1 layer2 slow gn_expand 1
+# CUDA_VISIBLE_DEVICES=1 python script_test_c10.py 1 layer2 slow gn_expand 2
+CUDA_VISIBLE_DEVICES=2 python script_test_c10.py 1 layer2 online gn_expand 5
 
-# CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 1 layer2 slow gn_expand
-# CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 1 layer2 online gn_expand
 
 # CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 5 layer2 slow gn_expand 0
 # CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 5 layer2 online gn_expand 0
 
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 4 layer2 slow gn_expand 0
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 4 layer2 online gn_expand 0
+# CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 4 layer2 slow gn_expand -1
+# CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 4 layer2 online gn_expand -1
 
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 3 layer2 slow gn_expand 0
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 3 layer2 online gn_expand 0
+# CUDA_VISIBLE_DEVICES=1 python script_test_c10.py 3 layer2 slow gn_expand -1
+# CUDA_VISIBLE_DEVICES=1 python script_test_c10.py 3 layer2 online gn_expand -1
 
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 2 layer2 slow gn_expand 0
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 2 layer2 online gn_expand 0
+# CUDA_VISIBLE_DEVICES=2 python script_test_c10.py 2 layer2 slow gn_expand -1
+# CUDA_VISIBLE_DEVICES=2 python script_test_c10.py 2 layer2 online gn_expand -1
 
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 1 layer2 slow gn_expand 0
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 1 layer2 online gn_expand 0
+# CUDA_VISIBLE_DEVICES=2 python script_test_c10.py 1 layer2 slow gn_expand -1
+# CUDA_VISIBLE_DEVICES=2 python script_test_c10.py 1 layer2 online gn_expand -1
 
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 0 layer2 slow gn_expand 0
-CUDA_VISIBLE_DEVICES=0 python script_test_c10.py 0 layer2 online gn_expand 0
+# CUDA_VISIBLE_DEVICES=3 python script_test_c10.py 0 layer2 slow gn_expand -1
+# CUDA_VISIBLE_DEVICES=3 python script_test_c10.py 0 layer2 online gn_expand -1
 
 
 # CUDA_VISIBLE_DEVICES=0 python main.py --shared layer2 --rotation_type expand \

@@ -6,20 +6,30 @@ from test_calls.show_result import get_err_adapted
 
 corruptions_names = ['gauss', 'shot', 'impulse', 'defocus', 'glass', 'motion', 'zoom', 
 							'snow', 'frost', 'fog', 'bright', 'contra', 'elastic', 'pixel', 'jpeg']
+for i in range(0, 6):
+	corruptions_names.append('s' + str(i))
 corruptions_names.insert(0, 'orig')
 
 corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
 					'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
 					'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
+for i in range(0, 6):
+	corruptions.append('scale_16_' + str(i))
 corruptions.insert(0, 'original')
 
 info = []
-info.append(('gn', '_expand_final', 5))
-info.append(('gn', '_expand_final', 4))
-info.append(('gn', '_expand_final', 3))
-info.append(('gn', '_expand_final', 2))
-info.append(('gn', '_expand_final', 1))
-info.append(('bn', '_expand_final', 5))
+# info.append(('gn', '_expand_final', 5))
+# info.append(('gn', '_expand_final', 4))
+# info.append(('gn', '_expand_final', 3))
+# info.append(('gn', '_expand_final', 2))
+# info.append(('gn', '_expand_final', 1))
+# info.append(('bn', '_expand_final', 5))
+info.append(('gn', '_expand', 5))
+info.append(('gn', '_expand', 4))
+info.append(('gn', '_expand', 3))
+info.append(('gn', '_expand', 2))
+info.append(('gn', '_expand', 1))
+info.append(('bn', '_expand', 5))
 
 baseline = [] #自己添加的
 for level in [1,2,3,4,5]:
@@ -91,13 +101,14 @@ for parta, partb, level in info:
 
 	results_slow = show_table('results/C10C_layer2_%s_%s%s' %('slow', parta, partb), level, threshold=threshold)
 	print_table(results_slow)
+	# info.append(('gn', '_expand', 5))
 
 	results_onln = show_table('results/C10C_layer2_%s_%s%s' %('online', parta, partb), level, threshold=threshold)
 	results_onln = results_onln[1:,:]
 	print_table(results_onln)
 
 	results = np.concatenate((results_none, results_slow, results_onln))
-	torch.save(results, 'results/C10C_layer2_%d_%s%s.pth' %(level, parta, partb))
+	torch.save(results, 'results/C10C_layer2_%d_%s%s_final.pth' %(level, parta, partb))
 
 for parta, partb, level in baseline:
 	if parta == '':

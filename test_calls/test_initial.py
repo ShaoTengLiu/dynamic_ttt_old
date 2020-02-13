@@ -29,24 +29,22 @@ my_makedir(args.outf)
 import torch.backends.cudnn as cudnn
 cudnn.benchmark = True
 net, ext, head, ssh = build_model(args)
-teset, teloader = prepare_test_data(args) # teloader在这里得到，所以 prepare_test_data 是一个关键函数
-
-# print(net.state_dict().keys())
+teset, teloader = prepare_test_data(args) # important
 
 print('Resuming from %s...' %(args.resume))
 ckpt = torch.load(args.resume + '/ckpt.pth')
-net.load_state_dict(ckpt['net']) # 这个地方报错了
-cls_initial, cls_correct, cls_losses = test(teloader, net) # 这一步说明了是在什么任务上做测试
+net.load_state_dict(ckpt['net']) # There will be errors here if you don't use group norm but try on it
+cls_initial, cls_correct, cls_losses = test(teloader, net) # This is a recognition task
 
 print('Old test error cls %.2f' %(ckpt['err_cls']*100))
-print('New test error cls %.2f' %(cls_initial*100)) # 这个测试是在发生变化的图片上的测试
+print('New test error cls %.2f' %(cls_initial*100)) # This may drop due to the distribution shift
 
 if args.none:
 	rdict = {'cls_initial': cls_initial, 'cls_correct': cls_correct, 'cls_losses': cls_losses}
 	torch.save(rdict, args.outf + '/%s_%d_none.pth' %(args.corruption, args.level))
 	quit()
 
-print('Old test error ssh %.2f' %(ckpt['err_ssh']*100)) # 为什么没有 new
+print('Old test error ssh %.2f' %(ckpt['err_ssh']*100)) # There is no "new"
 head.load_state_dict(ckpt['head'])
 ssh_initial, ssh_correct, ssh_losses = [], [], []
 

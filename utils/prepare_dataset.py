@@ -18,8 +18,8 @@ mnist_transforms = transforms.Compose([transforms.Resize((32, 32)),
 common_corruptions = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 'glass_blur',
 					'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog',
 					'brightness', 'contrast', 'elastic_transform', 'pixelate', 'jpeg_compression']
-for i in range(1, 9):
-	common_corruptions.append('scale' + str(i))
+for i in range(0, 6):
+	common_corruptions.append('scale_16_' + str(i))
 
 def prepare_test_data(args): # 这个是加入scale的关键
 	if args.dataset == 'cifar10':
@@ -65,4 +65,3 @@ def prepare_train_data(args):
 	trloader = torch.utils.data.DataLoader(trset, batch_size=args.batch_size,
 											shuffle=True, num_workers=args.workers)
 	return trset, trloader
-	

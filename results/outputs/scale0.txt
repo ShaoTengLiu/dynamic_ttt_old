@@ -1,0 +1,60 @@
+Building model...
+Test on scale_16_0 level 1
+Files already downloaded and verified
+Resuming from results/cifar10_layer2_gn_expand/...
+Old test error cls 8.31
+New test error cls 8.31
+Old test error ssh 8.65
+Average gradient inner product: 0.11
+Direction 0 error 8.59
+Error decoposition: 8519 650 622 209
+Direction 1 error 8.30
+Error decoposition: 8520 649 650 181
+Direction 2 error 8.92
+Error decoposition: 8483 686 625 206
+Direction 3 error 8.79
+Error decoposition: 8498 671 623 208
+Building model...
+Test on scale_16_0 level 1
+Files already downloaded and verified
+Resuming from results/cifar10_layer2_gn_expand/...
+Running...
+Error (%)
+[31m8.3[39m
+[33m8.2[39m
+[32m0.2[39m
+Bin analysis
+Direction 0
+[31m8519	13	0.15[39m
+[31m650	14	2.15[39m
+[32m622	20	3.22[39m
+[32m209	23	11.00[39m
+Direction 1
+[31m8520	12	0.14[39m
+[31m649	15	2.31[39m
+[32m650	22	3.38[39m
+[32m181	21	11.60[39m
+Direction 2
+[31m8483	11	0.13[39m
+[31m686	16	2.33[39m
+[32m625	23	3.68[39m
+[32m206	20	9.71[39m
+Direction 3
+[31m8498	14	0.16[39m
+[31m671	13	1.94[39m
+[32m623	20	3.21[39m
+[32m208	23	11.06[39m
+Self-supervised analysis
+Direction 0
+ Old error (%): 8.59
+ New error (%): 0.09
+Direction 1
+ Old error (%): 8.30
+ New error (%): 0.10
+Direction 2
+ Old error (%): 8.92
+ New error (%): 0.15
+Direction 3
+ Old error (%): 8.79
+ New error (%): 0.11
+scale_16_0 1

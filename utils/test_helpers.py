@@ -31,10 +31,10 @@ def build_model(args):
 		from models.SSHead import extractor_from_layer3
 		ext = extractor_from_layer3(net)
 		head = nn.Linear(64 * args.width, 4)
-	elif args.shared == 'layer2':
+	elif args.shared == 'layer2': # according to "shared", extract layers from
 		from models.SSHead import extractor_from_layer2, head_on_layer2
 		ext = extractor_from_layer2(net)
-		head = head_on_layer2(net, args.width, 4)
+		head = head_on_layer2(net, args.width, 4) # head can be test-time trained
 	ssh = ExtractorHead(ext, head).cuda()
 
 	if hasattr(args, 'parallel') and args.parallel:
